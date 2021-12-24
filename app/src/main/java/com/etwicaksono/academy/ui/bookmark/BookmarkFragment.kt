@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.app.ShareCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.etwicaksono.academy.R
 import com.etwicaksono.academy.data.CourseEntity
 import com.etwicaksono.academy.databinding.FragmentBookmarkBinding
@@ -33,7 +34,7 @@ class BookmarkFragment : Fragment(),BookmarkFragmentCallback{
             adapter.setCourses(courses)
 
             with(binding.rvBookmark){
-                layoutManager=LinearLayoutManager(context)
+                layoutManager= LinearLayoutManager(context)
                 setHasFixedSize(true)
                 this.adapter=adapter
             }

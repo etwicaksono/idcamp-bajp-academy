@@ -3,6 +3,8 @@ package com.etwicaksono.academy.ui.detail
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
@@ -47,10 +49,10 @@ class DetailCourseActivity : AppCompatActivity() {
 
         with(detailContentBinding.rvModule){
             isNestedScrollingEnabled=false
-            layoutManager=LinearLayoutManager(this@DetailCourseActivity)
+            layoutManager= LinearLayoutManager(this@DetailCourseActivity)
             setHasFixedSize(true)
             this.adapter=adapter
-            val dividerItemDecoration=DividerItemDecoration(this.context,DividerItemDecoration.VERTICAL)
+            val dividerItemDecoration= DividerItemDecoration(this.context,DividerItemDecoration.VERTICAL)
             addItemDecoration(dividerItemDecoration)
         }
     }
