@@ -18,7 +18,7 @@ class AcademyFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentAcademyBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
