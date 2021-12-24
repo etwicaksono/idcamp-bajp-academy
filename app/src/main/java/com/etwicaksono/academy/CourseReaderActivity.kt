@@ -2,9 +2,9 @@ package com.etwicaksono.academy
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.etwicaksono.academy.reader.CourseReaderCallback
-import com.etwicaksono.academy.reader.content.ModuleContentFragment
-import com.etwicaksono.academy.reader.list.ModuleListFragment
+import com.etwicaksono.academy.ui.reader.CourseReaderCallback
+import com.etwicaksono.academy.ui.reader.content.ModuleContentFragment
+import com.etwicaksono.academy.ui.reader.list.ModuleListFragment
 
 class CourseReaderActivity : AppCompatActivity(), CourseReaderCallback {
 

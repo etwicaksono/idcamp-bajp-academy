@@ -1,4 +1,4 @@
-package com.etwicaksono.academy.academy
+package com.etwicaksono.academy.ui.academy
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.etwicaksono.academy.R
 import com.etwicaksono.academy.databinding.FragmentAcademyBinding
 import com.etwicaksono.academy.utils.DataDummy
 

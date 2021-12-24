@@ -14,20 +14,20 @@
         android:theme="@style/Theme.Academy"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name=".detail.DetailCourseActivity"
+            android:name="com.etwicaksono.academy.ui.detail.DetailCourseActivity"
             android:exported="false"
             android:label="@string/title_activity_detail_course"
-            android:parentActivityName=".home.HomeActivity"
+            android:parentActivityName="com.etwicaksono.academy.ui.home.HomeActivity"
             android:theme="@style/Theme.Academy.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".home.HomeActivity"/>
+                android:value="com.etwicaksono.academy.ui.home.HomeActivity"/>
         </activity>
         <activity
             android:name=".CourseReaderActivity"
             android:exported="false" />
         <activity
-            android:name=".home.HomeActivity"
+            android:name="com.etwicaksono.academy.ui.home.HomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

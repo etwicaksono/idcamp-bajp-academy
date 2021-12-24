@@ -1,4 +1,4 @@
-package com.etwicaksono.academy.reader.list
+package com.etwicaksono.academy.ui.reader.list
 
 import android.content.Context
 import android.os.Bundle
@@ -9,11 +9,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.etwicaksono.academy.CourseReaderActivity
-import com.etwicaksono.academy.R
 import com.etwicaksono.academy.data.ModuleEntity
-import com.etwicaksono.academy.databinding.FragmentModuleContentBinding
 import com.etwicaksono.academy.databinding.FragmentModuleListBinding
-import com.etwicaksono.academy.reader.CourseReaderCallback
+import com.etwicaksono.academy.ui.reader.CourseReaderCallback
 import com.etwicaksono.academy.utils.DataDummy
 
 

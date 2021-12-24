@@ -1,11 +1,8 @@
-package com.etwicaksono.academy.detail
+package com.etwicaksono.academy.ui.detail
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.RoundedCorner
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions

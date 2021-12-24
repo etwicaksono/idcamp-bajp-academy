@@ -1,19 +1,19 @@
-package com.etwicaksono.academy.academy
+package com.etwicaksono.academy.ui.bookmark
 
 import android.content.Intent
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.etwicaksono.academy.R
 import com.etwicaksono.academy.data.CourseEntity
-import com.etwicaksono.academy.databinding.ItemsAcademyBinding
-import com.etwicaksono.academy.detail.DetailCourseActivity
+import com.etwicaksono.academy.databinding.ItemsBookmarkBinding
+import com.etwicaksono.academy.ui.detail.DetailCourseActivity
 
-class AcademyAdapter : RecyclerView.Adapter<AcademyAdapter.CourseViewHolder>() {
-    inner class CourseViewHolder(private val binding: ItemsAcademyBinding) :
+class BookmarkAdapter(private val callback: BookmarkFragmentCallback) :
+    RecyclerView.Adapter<BookmarkAdapter.CourseViewHolder>() {
+    inner class CourseViewHolder(private val binding: ItemsBookmarkBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(course: CourseEntity) {
             with(binding) {
@@ -25,7 +25,7 @@ class AcademyAdapter : RecyclerView.Adapter<AcademyAdapter.CourseViewHolder>() {
                     intent.putExtra(DetailCourseActivity.EXTRA_COURSE, course.courseId)
                     itemView.context.startActivity(intent)
                 }
-
+                imgShare.setOnClickListener { callback.onShareClick(course) }
                 Glide.with(itemView.context)
                     .load(course.imagePath)
                     .apply(
@@ -33,34 +33,28 @@ class AcademyAdapter : RecyclerView.Adapter<AcademyAdapter.CourseViewHolder>() {
                             .error(R.drawable.ic_error)
                     )
                     .into(ivPoster)
-
             }
         }
-
     }
 
-    private val listCourses = ArrayList<CourseEntity>()
+    private val listCourses=ArrayList<CourseEntity>()
 
-    fun setCourses(courses: List<CourseEntity>?) {
-        if (courses == null) return
+    fun setCourses(courses:List<CourseEntity>?){
+        if(courses==null) return
         this.listCourses.clear()
         this.listCourses.addAll(courses)
     }
 
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): AcademyAdapter.CourseViewHolder {
-        val itemsAcademyBinding =
-            ItemsAcademyBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return CourseViewHolder(itemsAcademyBinding)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CourseViewHolder {
+        val itemsBookmarkBinding=ItemsBookmarkBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        return CourseViewHolder(itemsBookmarkBinding)
     }
 
-    override fun onBindViewHolder(holder: AcademyAdapter.CourseViewHolder, position: Int) {
-        val course = listCourses[position]
+    override fun onBindViewHolder(holder: CourseViewHolder, position: Int) {
+        val course=listCourses[position]
         holder.bind(course)
     }
 
-    override fun getItemCount(): Int = listCourses.size
+    override fun getItemCount(): Int =listCourses.size
 
 }

@@ -1,4 +1,4 @@
-package com.etwicaksono.academy.reader
+package com.etwicaksono.academy.ui.reader
 
 interface CourseReaderCallback {
     fun moveTo(position:Int,moduleId:String)

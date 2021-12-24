@@ -1,4 +1,4 @@
-package com.etwicaksono.academy.detail
+package com.etwicaksono.academy.ui.detail
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

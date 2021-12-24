@@ -1,4 +1,4 @@
-package com.etwicaksono.academy.reader.list
+package com.etwicaksono.academy.ui.reader.list
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

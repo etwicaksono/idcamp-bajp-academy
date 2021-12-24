@@ -1,4 +1,4 @@
-package com.etwicaksono.academy.home
+package com.etwicaksono.academy.ui.home
 
 import android.content.Context
 import androidx.annotation.StringRes
@@ -6,8 +6,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.etwicaksono.academy.R
-import com.etwicaksono.academy.academy.AcademyFragment
-import com.etwicaksono.academy.bookmark.BookmarkFragment
+import com.etwicaksono.academy.ui.academy.AcademyFragment
+import com.etwicaksono.academy.ui.bookmark.BookmarkFragment
 
 class SectionPagerAdapter(private val mContext: Context, fm: FragmentManager) :
     FragmentPagerAdapter(

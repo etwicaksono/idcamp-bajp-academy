@@ -1,11 +1,10 @@
-package com.etwicaksono.academy.reader.content
+package com.etwicaksono.academy.ui.reader.content
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.etwicaksono.academy.R
 import com.etwicaksono.academy.data.ContentEntity
 import com.etwicaksono.academy.databinding.FragmentModuleContentBinding
 

@@ -1,8 +1,7 @@
-package com.etwicaksono.academy.home
+package com.etwicaksono.academy.ui.home
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.etwicaksono.academy.R
 import com.etwicaksono.academy.databinding.ActivityHomeBinding
 
 class HomeActivity : AppCompatActivity() {
