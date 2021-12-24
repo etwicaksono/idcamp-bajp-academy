@@ -24,7 +24,7 @@
                 android:value="com.etwicaksono.academy.ui.home.HomeActivity"/>
         </activity>
         <activity
-            android:name=".CourseReaderActivity"
+            android:name=".ui.reader.CourseReaderActivity"
             android:exported="false" />
         <activity
             android:name="com.etwicaksono.academy.ui.home.HomeActivity"
