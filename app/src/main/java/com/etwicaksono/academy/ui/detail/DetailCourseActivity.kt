@@ -14,6 +14,7 @@ import com.etwicaksono.academy.R
 import com.etwicaksono.academy.data.CourseEntity
 import com.etwicaksono.academy.databinding.ActivityDetailCourseBinding
 import com.etwicaksono.academy.databinding.ContentDetailCourseBinding
+import com.etwicaksono.academy.viewmodel.ViewModelFactory
 
 class DetailCourseActivity : AppCompatActivity() {
 
@@ -33,7 +34,8 @@ class DetailCourseActivity : AppCompatActivity() {
 
         val adapter=DetailCourseAdapter()
 
-        val viewModel=ViewModelProvider(this,ViewModelProvider.NewInstanceFactory())[DetailCourseViewModel::class.java]
+        val factory=ViewModelFactory.getInstance(this)
+        val viewModel=ViewModelProvider(this,factory)[DetailCourseViewModel::class.java]
 
         val extras = intent.extras
         if(extras!=null){

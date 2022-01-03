@@ -10,6 +10,7 @@ import com.etwicaksono.academy.data.ContentEntity
 import com.etwicaksono.academy.data.ModuleEntity
 import com.etwicaksono.academy.databinding.FragmentModuleContentBinding
 import com.etwicaksono.academy.ui.reader.CourseReaderViewModel
+import com.etwicaksono.academy.viewmodel.ViewModelFactory
 
 class ModuleContentFragment : Fragment() {
 
@@ -27,7 +28,8 @@ class ModuleContentFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         if(activity!=null){
-            val viewModel = ViewModelProvider(requireActivity(),ViewModelProvider.NewInstanceFactory())[CourseReaderViewModel::class.java]
+            val factory=ViewModelFactory.getInstance(requireActivity())
+            val viewModel = ViewModelProvider(requireActivity(),factory)[CourseReaderViewModel::class.java]
             val module = viewModel.getSelectedModule()
             populateWebView(module)
         }
