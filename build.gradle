@@ -28,6 +28,7 @@ ext {
     espressoVersion = '3.4.0'
     androidTestVersion = '1.4.0'
     androidXTestVersion = '1.2.0'
+    mockitoVersion = '3.6.0'
 
     materialVersion = '1.4.0'
     recyclerViewVersion = '1.2.1'

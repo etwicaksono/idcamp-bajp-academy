@@ -5,7 +5,7 @@ import com.etwicaksono.academy.data.CourseEntity
 import com.etwicaksono.academy.data.ModuleEntity
 import com.etwicaksono.academy.data.source.remote.RemoteDataSource
 
-class AcademyRepository private constructor(private val remoteDataSource: RemoteDataSource) :
+class FakeAcademyRepository(private val remoteDataSource: RemoteDataSource) :
     AcademyDataSource {
     override fun getAllCourses(): List<CourseEntity> {
         val courseResponses = remoteDataSource.getAllCourses()
@@ -79,25 +79,21 @@ class AcademyRepository private constructor(private val remoteDataSource: Remote
     }
 
     override fun getContent(courseId: String, moduleId: String): ModuleEntity {
-        val moduleResponse=remoteDataSource.getModules(courseId)
+        val moduleResponse = remoteDataSource.getModules(courseId)
         lateinit var module: ModuleEntity
-        for(response in moduleResponse){
-            if(response.moduleId==moduleId){
-                module= ModuleEntity(response.moduleId,response.courseId,response.title,response.position,false)
-                module.contentEntity= ContentEntity(remoteDataSource.getContent(moduleId).content)
+        for (response in moduleResponse) {
+            if (response.moduleId == moduleId) {
+                module = ModuleEntity(
+                    response.moduleId,
+                    response.courseId,
+                    response.title,
+                    response.position,
+                    false
+                )
+                module.contentEntity = ContentEntity(remoteDataSource.getContent(moduleId).content)
                 break
             }
         }
         return module
-    }
-
-    companion object {
-        @Volatile
-        private var instance: AcademyRepository? = null
-
-        fun getInstance(remoteData: RemoteDataSource): AcademyRepository =
-            instance ?: synchronized(this) {
-                instance ?: AcademyRepository(remoteData).apply { instance = this }
-            }
     }
 }

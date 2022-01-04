@@ -9,12 +9,11 @@ import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import com.etwicaksono.academy.R
 import com.etwicaksono.academy.utils.DataDummy
-import org.junit.Assert.*
 import org.junit.Rule
 import org.junit.Test
 
 class HomeActivityTest{
-    private val dummyCourse = DataDummy.generateDummyCourse()
+    private val dummyCourse = DataDummy.generateDummyCourses()
 
     @get:Rule
     var activityRule=ActivityScenarioRule(HomeActivity::class.java)
