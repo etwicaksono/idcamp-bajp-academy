@@ -1,12 +1,11 @@
 package com.etwicaksono.academy.ui.reader.content
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.etwicaksono.academy.data.ContentEntity
 import com.etwicaksono.academy.data.ModuleEntity
 import com.etwicaksono.academy.databinding.FragmentModuleContentBinding
 import com.etwicaksono.academy.ui.reader.CourseReaderViewModel
@@ -30,8 +29,12 @@ class ModuleContentFragment : Fragment() {
         if(activity!=null){
             val factory=ViewModelFactory.getInstance(requireActivity())
             val viewModel = ViewModelProvider(requireActivity(),factory)[CourseReaderViewModel::class.java]
-            val module = viewModel.getSelectedModule()
-            populateWebView(module)
+
+            fragmentModuleContentBinding.progressBar.visibility=View.VISIBLE
+            viewModel.getSelectedModule().observe(viewLifecycleOwner,{module->
+                fragmentModuleContentBinding.progressBar.visibility=View.GONE
+                if(module!=null)populateWebView(module)
+            })
         }
     }
 
