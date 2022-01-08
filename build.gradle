@@ -21,6 +21,7 @@ task clean(type: Delete) {
 ext {
     //dependencies version
     appCompatVersion = '1.4.0'
+    androidCoreTestVersion = '2.1.0'
     coreVersion = '1.7.0'
     constraintLayoutVersion = '2.1.2'
     junitVersion = '4.13.2'
@@ -29,6 +30,7 @@ ext {
     androidTestVersion = '1.4.0'
     androidXTestVersion = '1.2.0'
     mockitoVersion = '3.6.0'
+    mockitoKotlinVersion = '2.2.0'
 
     materialVersion = '1.4.0'
     recyclerViewVersion = '1.2.1'

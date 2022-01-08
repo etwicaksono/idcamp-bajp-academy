@@ -1,10 +1,14 @@
 package com.etwicaksono.academy.ui.academy
 
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import com.etwicaksono.academy.data.CourseEntity
 import com.etwicaksono.academy.data.source.AcademyRepository
 import com.etwicaksono.academy.utils.DataDummy
 import org.junit.Assert.*
 import org.junit.Before
+import org.junit.Rule
 
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -19,8 +23,14 @@ class AcademyViewModelTest {
 
     private lateinit var viewModel: AcademyViewModel
 
+    @get:Rule
+    var instantTaskExecutorRule=InstantTaskExecutorRule()
+
     @Mock
     private lateinit var academyRepository: AcademyRepository
+
+    @Mock
+    private lateinit var observer:Observer<List<CourseEntity>>
 
     @Before
     fun setup(){
@@ -29,10 +39,17 @@ class AcademyViewModelTest {
 
     @Test
     fun getCourses() {
-        `when`(academyRepository.getAllCourses()).thenReturn(DataDummy.generateDummyCourses() as ArrayList<CourseEntity>)
-        val courseEntities=viewModel.getCourses()
+        val dummyCourses = DataDummy.generateDummyCourses()
+        val courses = MutableLiveData<List<CourseEntity>>()
+        courses.value=dummyCourses
+
+        `when`(academyRepository.getAllCourses()).thenReturn(courses)
+        val courseEntities=viewModel.getCourses().value
         verify<AcademyRepository>(academyRepository).getAllCourses()
         assertNotNull(courseEntities)
-        assertEquals(5,courseEntities.size)
+        assertEquals(5,courseEntities?.size)
+
+        viewModel.getCourses().observeForever(observer)
+        verify(observer).onChanged(dummyCourses)
     }
 }
