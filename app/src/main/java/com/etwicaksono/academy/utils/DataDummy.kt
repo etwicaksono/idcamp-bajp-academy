@@ -1,7 +1,7 @@
 package com.etwicaksono.academy.utils
 
-import com.etwicaksono.academy.data.CourseEntity
-import com.etwicaksono.academy.data.ModuleEntity
+import com.etwicaksono.academy.data.entity.CourseEntity
+import com.etwicaksono.academy.data.entity.ModuleEntity
 import com.etwicaksono.academy.data.source.remote.response.ContentResponse
 import com.etwicaksono.academy.data.source.remote.response.CourseResponse
 import com.etwicaksono.academy.data.source.remote.response.ModuleResponse

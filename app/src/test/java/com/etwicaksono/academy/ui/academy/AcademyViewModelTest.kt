@@ -3,7 +3,7 @@ package com.etwicaksono.academy.ui.academy
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import com.etwicaksono.academy.data.CourseEntity
+import com.etwicaksono.academy.data.entity.CourseEntity
 import com.etwicaksono.academy.data.source.AcademyRepository
 import com.etwicaksono.academy.utils.DataDummy
 import org.junit.Assert.*
@@ -15,7 +15,6 @@ import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito.`when`
 import org.mockito.Mockito.verify
-import org.mockito.junit.MockitoJUnit
 import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)

@@ -3,12 +3,12 @@ package com.etwicaksono.academy.ui.reader.list
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.etwicaksono.academy.data.ModuleEntity
+import com.etwicaksono.academy.data.entity.ModuleEntity
 import com.etwicaksono.academy.databinding.ItemsModuleListCustomBinding
 
 class ModuleListAdapter internal constructor(private val listener:MyAdapterClickListener):RecyclerView.Adapter<ModuleListAdapter.ModuleViewHolder>(){
     inner class ModuleViewHolder(private val binding:ItemsModuleListCustomBinding):RecyclerView.ViewHolder(binding.root) {
-        fun bind(module:ModuleEntity){
+        fun bind(module: ModuleEntity){
             binding.tvModuleTitle.text=module.title
         }
     }

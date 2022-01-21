@@ -10,11 +10,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.etwicaksono.academy.ui.reader.CourseReaderActivity
-import com.etwicaksono.academy.data.ModuleEntity
+import com.etwicaksono.academy.data.entity.ModuleEntity
 import com.etwicaksono.academy.databinding.FragmentModuleListBinding
 import com.etwicaksono.academy.ui.reader.CourseReaderCallback
 import com.etwicaksono.academy.ui.reader.CourseReaderViewModel
-import com.etwicaksono.academy.utils.DataDummy
 import com.etwicaksono.academy.viewmodel.ViewModelFactory
 
 
