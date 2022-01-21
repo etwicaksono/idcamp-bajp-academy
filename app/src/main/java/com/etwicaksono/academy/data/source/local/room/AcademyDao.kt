@@ -24,7 +24,7 @@ interface AcademyDao {
     fun updateCourse(course:CourseEntity)
 
     @Query("SELECT * FROM moduleentities WHERE courseId = :courseId")
-    fun getModulesByCourseId(courseId:String):LiveData<ModuleEntity>
+    fun getModulesByCourseId(courseId:String):LiveData<List<ModuleEntity>>
 
     @Query("SELECT * FROM moduleentities WHERE moduleId = :moduleId")
     fun getModuleById(moduleId:String):LiveData<ModuleEntity>
