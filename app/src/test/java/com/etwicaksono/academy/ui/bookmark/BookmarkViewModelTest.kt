@@ -3,7 +3,7 @@ package com.etwicaksono.academy.ui.bookmark
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import com.etwicaksono.academy.data.entity.CourseEntity
+import com.etwicaksono.academy.data.source.local.entity.CourseEntity
 import com.etwicaksono.academy.data.source.AcademyRepository
 import com.etwicaksono.academy.utils.DataDummy
 import org.junit.Assert.assertEquals

@@ -3,8 +3,8 @@ package com.etwicaksono.academy.ui.reader
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import com.etwicaksono.academy.data.entity.ContentEntity
-import com.etwicaksono.academy.data.entity.ModuleEntity
+import com.etwicaksono.academy.data.source.local.entity.ContentEntity
+import com.etwicaksono.academy.data.source.local.entity.ModuleEntity
 import com.etwicaksono.academy.data.source.AcademyRepository
 import com.etwicaksono.academy.utils.DataDummy
 import org.junit.Assert.*

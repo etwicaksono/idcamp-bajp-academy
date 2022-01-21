@@ -1,4 +1,4 @@
-package com.etwicaksono.academy.data.entity
+package com.etwicaksono.academy.data.source.local.entity
 
 import androidx.annotation.NonNull
 import androidx.room.*

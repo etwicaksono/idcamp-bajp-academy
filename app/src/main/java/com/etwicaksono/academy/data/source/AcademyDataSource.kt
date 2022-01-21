@@ -1,8 +1,8 @@
 package com.etwicaksono.academy.data.source
 
 import androidx.lifecycle.LiveData
-import com.etwicaksono.academy.data.entity.CourseEntity
-import com.etwicaksono.academy.data.entity.ModuleEntity
+import com.etwicaksono.academy.data.source.local.entity.CourseEntity
+import com.etwicaksono.academy.data.source.local.entity.ModuleEntity
 
 interface AcademyDataSource {
 

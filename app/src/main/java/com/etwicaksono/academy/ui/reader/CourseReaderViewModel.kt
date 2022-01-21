@@ -2,7 +2,7 @@ package com.etwicaksono.academy.ui.reader
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.etwicaksono.academy.data.entity.ModuleEntity
+import com.etwicaksono.academy.data.source.local.entity.ModuleEntity
 import com.etwicaksono.academy.data.source.AcademyRepository
 
 class CourseReaderViewModel(private val academyRepository:AcademyRepository) : ViewModel() {

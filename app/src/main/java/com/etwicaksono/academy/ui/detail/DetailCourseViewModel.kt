@@ -2,8 +2,8 @@ package com.etwicaksono.academy.ui.detail
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.etwicaksono.academy.data.entity.CourseEntity
-import com.etwicaksono.academy.data.entity.ModuleEntity
+import com.etwicaksono.academy.data.source.local.entity.CourseEntity
+import com.etwicaksono.academy.data.source.local.entity.ModuleEntity
 import com.etwicaksono.academy.data.source.AcademyRepository
 
 class DetailCourseViewModel(private val academyRepository:AcademyRepository) : ViewModel() {
