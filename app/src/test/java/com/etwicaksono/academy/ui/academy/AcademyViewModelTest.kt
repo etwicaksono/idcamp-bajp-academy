@@ -45,7 +45,7 @@ class AcademyViewModelTest {
 
         `when`(academyRepository.getAllCourses()).thenReturn(courses)
         val courseEntities=viewModel.getCourses().value
-        verify<AcademyRepository>(academyRepository).getAllCourses()
+        verify(academyRepository).getAllCourses()
         assertNotNull(courseEntities)
         assertEquals(5,courseEntities?.size)
 
