@@ -2,6 +2,7 @@ package com.etwicaksono.academy.data.source
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.etwicaksono.academy.data.source.local.LocalDataSource
 import com.etwicaksono.academy.data.source.local.entity.ContentEntity
 import com.etwicaksono.academy.data.source.local.entity.CourseEntity
 import com.etwicaksono.academy.data.source.local.entity.ModuleEntity
@@ -9,8 +10,14 @@ import com.etwicaksono.academy.data.source.remote.RemoteDataSource
 import com.etwicaksono.academy.data.source.remote.response.ContentResponse
 import com.etwicaksono.academy.data.source.remote.response.CourseResponse
 import com.etwicaksono.academy.data.source.remote.response.ModuleResponse
+import com.etwicaksono.academy.utils.AppExecutors
+import com.etwicaksono.academy.vo.Resource
 
-class AcademyRepository private constructor(private val remoteDataSource: RemoteDataSource) :
+class AcademyRepository private constructor(
+    private val remoteDataSource: RemoteDataSource,
+    private val localDataSource: LocalDataSource,
+    private val appExecutors: AppExecutors
+) :
     AcademyDataSource {
     override fun getAllCourses(): LiveData<List<CourseEntity>> {
         val courseResults = MutableLiveData<List<CourseEntity>>()
@@ -106,6 +113,18 @@ class AcademyRepository private constructor(private val remoteDataSource: Remote
         return moduleResults
     }
 
+    override fun getContent(moduleId: String): LiveData<Resource<ModuleEntity>> {
+        TODO("Not yet implemented")
+    }
+
+    override fun setCourseBookmark(course: CourseEntity, state: Boolean) {
+        TODO("Not yet implemented")
+    }
+
+    override fun setReadModule(module: ModuleEntity) {
+        TODO("Not yet implemented")
+    }
+
     override fun getContent(courseId: String, moduleId: String): LiveData<ModuleEntity> {
         val moduleResult = MutableLiveData<ModuleEntity>()
 
@@ -142,9 +161,9 @@ class AcademyRepository private constructor(private val remoteDataSource: Remote
         @Volatile
         private var instance: AcademyRepository? = null
 
-        fun getInstance(remoteData: RemoteDataSource): AcademyRepository =
+        fun getInstance(remoteData: RemoteDataSource,localData:LocalDataSource, appExecutors: AppExecutors): AcademyRepository =
             instance ?: synchronized(this) {
-                instance ?: AcademyRepository(remoteData).apply { instance = this }
+                instance ?: AcademyRepository(remoteData,localData,appExecutors).apply { instance = this }
             }
     }
 }
