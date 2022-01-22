@@ -149,9 +149,9 @@ class DetailCourseActivity : AppCompatActivity() {
         if (menu == null) return
         val menuItem=menu?.findItem(R.id.action_bookmark)
         if(state){
-            menuItem?.icon=ContextCompat.getDrawable(this,R.drawable.ic_bookmark_white)
-        }else{
             menuItem?.icon=ContextCompat.getDrawable(this,R.drawable.ic_bookmarked_white)
+        }else{
+            menuItem?.icon=ContextCompat.getDrawable(this,R.drawable.ic_bookmark_white)
         }
     }
 
