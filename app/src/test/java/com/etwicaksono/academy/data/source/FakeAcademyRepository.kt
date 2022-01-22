@@ -13,7 +13,7 @@ import com.etwicaksono.academy.data.source.remote.response.ModuleResponse
 import com.etwicaksono.academy.utils.AppExecutors
 import com.etwicaksono.academy.vo.Resource
 
-class AcademyRepository private constructor(
+class FakeAcademyRepository private constructor(
     val remoteDataSource: RemoteDataSource,
     val localDataSource: LocalDataSource,
     val appExecutors: AppExecutors
