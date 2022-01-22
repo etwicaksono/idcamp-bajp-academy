@@ -6,6 +6,7 @@ import com.etwicaksono.academy.data.source.local.entity.CourseEntity
 import com.etwicaksono.academy.data.source.local.entity.CourseWithModule
 import com.etwicaksono.academy.data.source.local.entity.ModuleEntity
 
+@Dao
 interface AcademyDao {
     @Query("SELECT * FROM courseentities")
     fun getCourses():LiveData<List<CourseEntity>>
