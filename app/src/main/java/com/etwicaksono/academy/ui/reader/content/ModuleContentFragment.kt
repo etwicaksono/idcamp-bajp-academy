@@ -16,40 +16,49 @@ import com.etwicaksono.academy.vo.Status
 class ModuleContentFragment : Fragment() {
 
     private lateinit var fragmentModuleContentBinding: FragmentModuleContentBinding
+    private lateinit var viewModel: CourseReaderViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        fragmentModuleContentBinding= FragmentModuleContentBinding.inflate(inflater,container,false)
+        fragmentModuleContentBinding =
+            FragmentModuleContentBinding.inflate(inflater, container, false)
         return fragmentModuleContentBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if(activity!=null){
-            val factory=ViewModelFactory.getInstance(requireActivity())
-            val viewModel = ViewModelProvider(requireActivity(),factory)[CourseReaderViewModel::class.java]
+        if (activity != null) {
+            val factory = ViewModelFactory.getInstance(requireActivity())
+            viewModel =
+                ViewModelProvider(requireActivity(), factory)[CourseReaderViewModel::class.java]
 
-            viewModel.selectedModule.observe(viewLifecycleOwner,{moduleEntity->
-                if(moduleEntity!=null){
-                    when(moduleEntity.status){
-                        Status.LOADING->fragmentModuleContentBinding.progressBar.visibility=View.VISIBLE
-                        Status.SUCCESS->if(moduleEntity.data!=null){
-                            fragmentModuleContentBinding.progressBar.visibility=View.GONE
-                            if(moduleEntity.data.contentEntity!=null){
+            viewModel.selectedModule.observe(viewLifecycleOwner, { moduleEntity ->
+                if (moduleEntity != null) {
+                    when (moduleEntity.status) {
+                        Status.LOADING -> fragmentModuleContentBinding.progressBar.visibility =
+                            View.VISIBLE
+                        Status.SUCCESS -> if (moduleEntity.data != null) {
+                            fragmentModuleContentBinding.progressBar.visibility = View.GONE
+                            if (moduleEntity.data.contentEntity != null) {
                                 populateWebView(moduleEntity.data)
                             }
                             setButtonNextPrevState(moduleEntity.data)
-                            if(!moduleEntity.data.read){
+                            if (!moduleEntity.data.read) {
                                 viewModel.readContent(moduleEntity.data)
                             }
                         }
-                        Status.ERROR->{
-                            fragmentModuleContentBinding.progressBar.visibility=View.GONE
-                            Toast.makeText(context,"Terjadi kesalahan",Toast.LENGTH_SHORT).show()
+                        Status.ERROR -> {
+                            fragmentModuleContentBinding.progressBar.visibility = View.GONE
+                            Toast.makeText(context, "Terjadi kesalahan", Toast.LENGTH_SHORT).show()
                         }
+                    }
+
+                    fragmentModuleContentBinding.apply {
+                        btnNext.setOnClickListener { viewModel.setNextPage() }
+                        btnPrev.setOnClickListener { viewModel.setPrevPage() }
                     }
                 }
             })
@@ -57,10 +66,38 @@ class ModuleContentFragment : Fragment() {
     }
 
     private fun populateWebView(module: ModuleEntity) {
-        fragmentModuleContentBinding.webView.loadData(module.contentEntity?.content?:"","text/html","UTF-8")
+        fragmentModuleContentBinding.webView.loadData(
+            module.contentEntity?.content ?: "",
+            "text/html",
+            "UTF-8"
+        )
     }
 
-    private fun setButtonNextPrevState(module:ModuleEntity) {}
+    private fun setButtonNextPrevState(module: ModuleEntity) {
+        if (activity != null) {
+            when (module.position) {
+                0 -> {
+                    fragmentModuleContentBinding.apply {
+                        btnPrev.isEnabled = false
+                        btnNext.isEnabled = true
+                    }
+
+                }
+                viewModel.getModuleSize() - 1 -> {
+                    fragmentModuleContentBinding.apply {
+                        btnPrev.isEnabled = true
+                        btnNext.isEnabled = false
+                    }
+                }
+                else -> {
+                    fragmentModuleContentBinding.apply {
+                        btnPrev.isEnabled = true
+                        btnNext.isEnabled = true
+                    }
+                }
+            }
+        }
+    }
 
     companion object {
         val TAG: String = ModuleContentFragment::class.java.simpleName
