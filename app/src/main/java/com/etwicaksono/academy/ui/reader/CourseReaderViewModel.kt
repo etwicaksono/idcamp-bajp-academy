@@ -21,7 +21,7 @@ class CourseReaderViewModel(private val academyRepository: AcademyRepository) : 
     }
 
     var modules: LiveData<Resource<List<ModuleEntity>>> =
-        Transformations.switchMap(moduleId) { mCourseId ->
+        Transformations.switchMap(courseId) { mCourseId ->
             academyRepository.getAllModulesByCourse(mCourseId)
         }
 
