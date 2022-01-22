@@ -33,7 +33,7 @@ abstract class NetworkBoundResource<ResultType, RequestType>(private val mExecut
 
     protected abstract fun loadFromDB(): LiveData<ResultType>
 
-    protected abstract fun shouldFetch(data: ResultType): Boolean
+    protected abstract fun shouldFetch(data: ResultType?): Boolean
 
     protected abstract fun createCall(): LiveData<ApiResponse<RequestType>>
 
@@ -76,7 +76,7 @@ abstract class NetworkBoundResource<ResultType, RequestType>(private val mExecut
             }
         }
 
-        fun asLiveData(): LiveData<Resource<ResultType>> = result
     }
 
+    fun asLiveData(): LiveData<Resource<ResultType>> = result
 }

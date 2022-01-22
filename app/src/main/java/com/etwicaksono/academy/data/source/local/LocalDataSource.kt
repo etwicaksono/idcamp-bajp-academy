@@ -27,6 +27,15 @@ class LocalDataSource private constructor(private val mAcademyDao: AcademyDao) {
         mAcademyDao.updateCourse(course)
     }
 
+    fun getModuleWithContent(moduleId:String):LiveData<ModuleEntity> = mAcademyDao.getModuleById(moduleId)
+
+    fun updateContent(content:String, moduleId:String) = mAcademyDao.updateModuleByContent(content,moduleId)
+
+    fun setReadModule(module:ModuleEntity){
+        module.read=true
+        mAcademyDao.updateModule(module)
+    }
+
     companion object {
         private var INSTANCE: LocalDataSource? = null
 
