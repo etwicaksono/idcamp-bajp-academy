@@ -9,9 +9,12 @@ import com.etwicaksono.academy.data.source.local.room.AcademyDao
 
 class LocalDataSource private constructor(private val mAcademyDao: AcademyDao) {
 
-    fun getAllCourses(): DataSource.Factory<Int, CourseEntity> = mAcademyDao.getCourses()
+    fun getAllCourses(): DataSource.Factory<Int, CourseEntity> {
+        return mAcademyDao.getCourses()
+    }
 
-    fun getBookmarkedCourses(): DataSource.Factory<Int, CourseEntity> = mAcademyDao.getBookmarkedCourse()
+    fun getBookmarkedCourses(): DataSource.Factory<Int, CourseEntity> =
+        mAcademyDao.getBookmarkedCourse()
 
     fun getCourseWithModules(courseId: String): LiveData<CourseWithModule> =
         mAcademyDao.getCourseWithModuleById(courseId)
@@ -28,12 +31,14 @@ class LocalDataSource private constructor(private val mAcademyDao: AcademyDao) {
         mAcademyDao.updateCourse(course)
     }
 
-    fun getModuleWithContent(moduleId:String):LiveData<ModuleEntity> = mAcademyDao.getModuleById(moduleId)
+    fun getModuleWithContent(moduleId: String): LiveData<ModuleEntity> =
+        mAcademyDao.getModuleById(moduleId)
 
-    fun updateContent(content:String, moduleId:String) = mAcademyDao.updateModuleByContent(content,moduleId)
+    fun updateContent(content: String, moduleId: String) =
+        mAcademyDao.updateModuleByContent(content, moduleId)
 
-    fun setReadModule(module:ModuleEntity){
-        module.read=true
+    fun setReadModule(module: ModuleEntity) {
+        module.read = true
         mAcademyDao.updateModule(module)
     }
 
@@ -41,6 +46,6 @@ class LocalDataSource private constructor(private val mAcademyDao: AcademyDao) {
         private var INSTANCE: LocalDataSource? = null
 
         fun getInstance(academyDao: AcademyDao): LocalDataSource =
-            INSTANCE ?: LocalDataSource(academyDao)
+            INSTANCE ?: LocalDataSource(academyDao).apply { INSTANCE = this }
     }
 }

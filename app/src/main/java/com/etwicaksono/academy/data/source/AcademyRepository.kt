@@ -3,8 +3,6 @@ package com.etwicaksono.academy.data.source
 import androidx.lifecycle.LiveData
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
-import androidx.paging.PagingConfig
-import androidx.paging.PagingData
 import com.etwicaksono.academy.data.source.local.LocalDataSource
 import com.etwicaksono.academy.data.source.local.entity.CourseEntity
 import com.etwicaksono.academy.data.source.local.entity.CourseWithModule
@@ -27,12 +25,12 @@ class AcademyRepository private constructor(
         return object :
             NetworkBoundResource<PagedList<CourseEntity>, List<CourseResponse>>(appExecutors) {
             override fun loadFromDB(): LiveData<PagedList<CourseEntity>> {
-                val config= PagedList.Config.Builder()
+                val config = PagedList.Config.Builder()
                     .setEnablePlaceholders(false)
                     .setInitialLoadSizeHint(4)
                     .setPageSize(4)
                     .build()
-                return LivePagedListBuilder(localDataSource.getAllCourses(),config).build()
+                return LivePagedListBuilder(localDataSource.getAllCourses(), config).build()
             }
 
             override fun shouldFetch(data: PagedList<CourseEntity>?): Boolean =
