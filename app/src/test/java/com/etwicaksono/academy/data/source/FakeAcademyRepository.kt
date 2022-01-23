@@ -13,10 +13,10 @@ import com.etwicaksono.academy.data.source.remote.response.ModuleResponse
 import com.etwicaksono.academy.utils.AppExecutors
 import com.etwicaksono.academy.vo.Resource
 
-class FakeAcademyRepository private constructor(
-    val remoteDataSource: RemoteDataSource,
-    val localDataSource: LocalDataSource,
-    val appExecutors: AppExecutors
+class FakeAcademyRepository(
+    private val remoteDataSource: RemoteDataSource,
+    private val localDataSource: LocalDataSource,
+    private val appExecutors: AppExecutors
 ) :
     AcademyDataSource {
     override fun getAllCourses(): LiveData<Resource<List<CourseEntity>>> {
