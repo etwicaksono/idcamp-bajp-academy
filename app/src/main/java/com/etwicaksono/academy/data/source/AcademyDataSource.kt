@@ -10,9 +10,9 @@ import com.etwicaksono.academy.vo.Resource
 
 interface AcademyDataSource {
 
-    fun getAllCourses(): LiveData<Resource<PagingData<CourseEntity>>>
+    fun getAllCourses(): LiveData<Resource<PagedList<CourseEntity>>>
 
-    fun getBookmarkedCourses(): LiveData<PagingData<CourseEntity>>
+    fun getBookmarkedCourses(): LiveData<PagedList<CourseEntity>>
 
     fun getCourseWithModules(courseId: String): LiveData<Resource<CourseWithModule>>
 
