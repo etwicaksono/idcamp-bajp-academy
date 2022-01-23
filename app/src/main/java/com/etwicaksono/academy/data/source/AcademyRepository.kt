@@ -50,12 +50,10 @@ class AcademyRepository private constructor(
                         false,
                         response.imagePath
                     )
-
                     courseList.add(course)
                 }
                 localDataSource.insertCourses(courseList)
             }
-
         }.asLiveData()
     }
 
@@ -171,7 +169,7 @@ class AcademyRepository private constructor(
             appExecutors: AppExecutors
         ): AcademyRepository =
             instance ?: synchronized(this) {
-                instance ?: AcademyRepository(
+                AcademyRepository(
                     remoteData,
                     localData,
                     appExecutors
