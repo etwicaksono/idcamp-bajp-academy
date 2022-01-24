@@ -13,15 +13,8 @@ import com.etwicaksono.academy.data.source.local.entity.CourseEntity
 import com.etwicaksono.academy.databinding.ItemsAcademyBinding
 import com.etwicaksono.academy.ui.detail.DetailCourseActivity
 
-class AcademyAdapter : PagedListAdapter<CourseEntity,AcademyAdapter.CourseViewHolder>(DIFF_CALLBACK){
-
-    private val listCourses = ArrayList<CourseEntity>()
-
-    fun setCourses(courses: List<CourseEntity>?) {
-        if (courses == null) return
-        this.listCourses.clear()
-        this.listCourses.addAll(courses)
-    }
+class AcademyAdapter :
+    PagedListAdapter<CourseEntity, AcademyAdapter.CourseViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -33,12 +26,11 @@ class AcademyAdapter : PagedListAdapter<CourseEntity,AcademyAdapter.CourseViewHo
     }
 
     override fun onBindViewHolder(holder: AcademyAdapter.CourseViewHolder, position: Int) {
-        val course = listCourses[position]
-        holder.bind(course)
+        val course = getItem(position)
+        if(course!=null){
+            holder.bind(course)
+        }
     }
-
-    override fun getItemCount(): Int = listCourses.size
-
 
     inner class CourseViewHolder(private val binding: ItemsAcademyBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -66,14 +58,14 @@ class AcademyAdapter : PagedListAdapter<CourseEntity,AcademyAdapter.CourseViewHo
 
     }
 
-    companion object{
+    companion object {
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<CourseEntity>() {
             override fun areItemsTheSame(oldItem: CourseEntity, newItem: CourseEntity): Boolean {
-                return oldItem.courseId==newItem.courseId
+                return oldItem.courseId == newItem.courseId
             }
 
             override fun areContentsTheSame(oldItem: CourseEntity, newItem: CourseEntity): Boolean {
-                return oldItem==newItem
+                return oldItem == newItem
             }
         }
     }

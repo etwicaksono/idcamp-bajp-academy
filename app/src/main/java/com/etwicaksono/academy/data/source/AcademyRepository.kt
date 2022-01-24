@@ -30,14 +30,17 @@ class AcademyRepository private constructor(
                     .setInitialLoadSizeHint(4)
                     .setPageSize(4)
                     .build()
-                return LivePagedListBuilder(localDataSource.getAllCourses(), config).build()
+                val output=localDataSource.getAllCourses()
+                return LivePagedListBuilder(output, config).build()
             }
 
             override fun shouldFetch(data: PagedList<CourseEntity>?): Boolean =
                 data == null || data.isEmpty()
 
-            override fun createCall(): LiveData<ApiResponse<List<CourseResponse>>> =
-                remoteDataSource.getAllCourses()
+            override fun createCall(): LiveData<ApiResponse<List<CourseResponse>>> {
+                return remoteDataSource.getAllCourses()
+            }
+
 
             override fun saveCallResult(data: List<CourseResponse>) {
                 val courseList = ArrayList<CourseEntity>()

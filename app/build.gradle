@@ -56,6 +56,9 @@ dependencies {
 //    paging
     implementation "androidx.paging:paging-runtime:$pagingVersion"
 
+//    architecture
+//    implementation "androidx.lifecycle:lifecycle-viewmodel:$archLifecycleVersion"
+
     //testing
     implementation "androidx.test.espresso:espresso-idling-resource:$idleResourceVersion"
     testImplementation "junit:junit:$junitVersion"

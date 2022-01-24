@@ -14,12 +14,12 @@ class RemoteDataSource private constructor(private val jsonHelper: JsonHelper) {
 
     private val handler = Handler(Looper.getMainLooper())
 
-    fun getAllCourses():LiveData<ApiResponse<List<CourseResponse>>> {
+    fun getAllCourses(): LiveData<ApiResponse<List<CourseResponse>>> {
         EspressoIdlingResources.increment()
-        val resultCourse=MutableLiveData<ApiResponse<List<CourseResponse>>>()
+        val resultCourse = MutableLiveData<ApiResponse<List<CourseResponse>>>()
         handler.postDelayed(
             {
-                resultCourse.value= ApiResponse.success(jsonHelper.loadCourses())
+                resultCourse.value = ApiResponse.success(jsonHelper.loadCourses())
                 EspressoIdlingResources.decrement()
             },
             SERVICE_LATENCY_IN_MILLIS
@@ -27,12 +27,12 @@ class RemoteDataSource private constructor(private val jsonHelper: JsonHelper) {
         return resultCourse
     }
 
-    fun getModules(courseId: String):LiveData<ApiResponse<List<ModuleResponse>>> {
+    fun getModules(courseId: String): LiveData<ApiResponse<List<ModuleResponse>>> {
         EspressoIdlingResources.increment()
-        val resultModules=MutableLiveData<ApiResponse<List<ModuleResponse>>>()
+        val resultModules = MutableLiveData<ApiResponse<List<ModuleResponse>>>()
         handler.postDelayed(
             {
-                resultModules.value= ApiResponse.success(jsonHelper.loadModule(courseId))
+                resultModules.value = ApiResponse.success(jsonHelper.loadModule(courseId))
                 EspressoIdlingResources.decrement()
             },
             SERVICE_LATENCY_IN_MILLIS
@@ -40,12 +40,12 @@ class RemoteDataSource private constructor(private val jsonHelper: JsonHelper) {
         return resultModules
     }
 
-    fun getContent(moduleId: String):LiveData<ApiResponse<ContentResponse>> {
+    fun getContent(moduleId: String): LiveData<ApiResponse<ContentResponse>> {
         EspressoIdlingResources.increment()
         val resultContent = MutableLiveData<ApiResponse<ContentResponse>>()
         handler.postDelayed(
             {
-                resultContent.value=ApiResponse.success(jsonHelper.loadContent(moduleId))
+                resultContent.value = ApiResponse.success(jsonHelper.loadContent(moduleId))
                 EspressoIdlingResources.decrement()
             },
             SERVICE_LATENCY_IN_MILLIS
@@ -61,7 +61,7 @@ class RemoteDataSource private constructor(private val jsonHelper: JsonHelper) {
         private var instance: RemoteDataSource? = null
 
         fun getInstance(helper: JsonHelper): RemoteDataSource = instance ?: synchronized(this) {
-            instance ?: RemoteDataSource(helper).apply { instance = this }
+            RemoteDataSource(helper).apply { instance = this }
         }
     }
 }
