@@ -14,29 +14,22 @@ import com.etwicaksono.academy.databinding.ItemsBookmarkBinding
 import com.etwicaksono.academy.ui.detail.DetailCourseActivity
 
 class BookmarkAdapter(private val callback: BookmarkFragmentCallback) :
-    PagedListAdapter<CourseEntity,BookmarkAdapter.CourseViewHolder>(DIFF_CALLBACK) {
-
-    private val listCourses=ArrayList<CourseEntity>()
-
-    fun setCourses(courses:List<CourseEntity>?){
-        if(courses==null) return
-        this.listCourses.clear()
-        this.listCourses.addAll(courses)
-    }
+    PagedListAdapter<CourseEntity, BookmarkAdapter.CourseViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CourseViewHolder {
-        val itemsBookmarkBinding=ItemsBookmarkBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        val itemsBookmarkBinding =
+            ItemsBookmarkBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return CourseViewHolder(itemsBookmarkBinding)
     }
 
     override fun onBindViewHolder(holder: CourseViewHolder, position: Int) {
-        val course=listCourses[position]
-        holder.bind(course)
+        val course = getItem(position)
+        if (course != null) {
+            holder.bind(course)
+        }
     }
 
-    override fun getItemCount(): Int =listCourses.size
-
-    fun getSwipedData(swipedPosition:Int):CourseEntity?=getItem(swipedPosition)
+    fun getSwipedData(swipedPosition: Int): CourseEntity? = getItem(swipedPosition)
 
 
     inner class CourseViewHolder(private val binding: ItemsBookmarkBinding) :
@@ -63,14 +56,14 @@ class BookmarkAdapter(private val callback: BookmarkFragmentCallback) :
         }
     }
 
-    companion object{
-        private val DIFF_CALLBACK= object :DiffUtil.ItemCallback<CourseEntity>() {
+    companion object {
+        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<CourseEntity>() {
             override fun areItemsTheSame(oldItem: CourseEntity, newItem: CourseEntity): Boolean {
-                return oldItem.courseId==newItem.courseId
+                return oldItem.courseId == newItem.courseId
             }
 
             override fun areContentsTheSame(oldItem: CourseEntity, newItem: CourseEntity): Boolean {
-                return oldItem==newItem
+                return oldItem == newItem
             }
 
         }

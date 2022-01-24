@@ -20,7 +20,7 @@ class BookmarkFragment : Fragment(), BookmarkFragmentCallback {
 
     lateinit var binding: FragmentBookmarkBinding
     private lateinit var viewModel: BookmarkViewModel
-    private lateinit var adapter:BookmarkAdapter
+    private lateinit var bookmarkAdapter:BookmarkAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,23 +33,24 @@ class BookmarkFragment : Fragment(), BookmarkFragmentCallback {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        itemTouchHelper.attachToRecyclerView(binding.rvBookmark)
 
 
         if (activity != null) {
             val factory = ViewModelFactory.getInstance(requireActivity())
             viewModel = ViewModelProvider(this, factory)[BookmarkViewModel::class.java]
-            adapter = BookmarkAdapter(this)
+            bookmarkAdapter = BookmarkAdapter(this)
 
             binding.progressBar.visibility=View.VISIBLE
             viewModel.getBookmarks().observe(viewLifecycleOwner,{courses->
                 binding.progressBar.visibility=View.GONE
-                adapter.submitList(courses)
+                bookmarkAdapter.submitList(courses)
             })
 
-            with(binding.rvBookmark) {
+            binding.rvBookmark.apply {
                 layoutManager = LinearLayoutManager(context)
                 setHasFixedSize(true)
-                this.adapter = adapter
+                adapter = bookmarkAdapter
             }
         }
     }
@@ -83,7 +84,7 @@ class BookmarkFragment : Fragment(), BookmarkFragmentCallback {
         override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
             if(view!=null){
                 val swipedPosition=viewHolder.absoluteAdapterPosition
-                val courseEntity= adapter.getSwipedData(swipedPosition)
+                val courseEntity= bookmarkAdapter.getSwipedData(swipedPosition)
                 courseEntity?.let { viewModel.setBookmark(it) }
 
                 val snackbar=Snackbar.make(view as View,R.string.message_undo,Snackbar.LENGTH_LONG)
