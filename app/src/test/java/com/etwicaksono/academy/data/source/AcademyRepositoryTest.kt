@@ -27,6 +27,7 @@ class AcademyRepositoryTest {
     private val remote = mock(RemoteDataSource::class.java)
     private val local = mock(LocalDataSource::class.java)
     private val appExecutors = mock(AppExecutors::class.java)
+
     private val academyRepository = FakeAcademyRepository(remote, local, appExecutors)
 
     private val courseResponse = DataDummy.generateRemoteDummyCourses()
