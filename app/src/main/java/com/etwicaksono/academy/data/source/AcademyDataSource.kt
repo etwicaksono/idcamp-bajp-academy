@@ -2,7 +2,6 @@ package com.etwicaksono.academy.data.source
 
 import androidx.lifecycle.LiveData
 import androidx.paging.PagedList
-import androidx.paging.PagingData
 import com.etwicaksono.academy.data.source.local.entity.CourseEntity
 import com.etwicaksono.academy.data.source.local.entity.CourseWithModule
 import com.etwicaksono.academy.data.source.local.entity.ModuleEntity
